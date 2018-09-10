@@ -17,7 +17,6 @@ print(user.company_id.name) # the name of its company
 medicion = odoo.env['uniquindio.medicion']
 
 
-
 while True:
 	precipitacion = random.randint(100, 200)
 	humedad_amb = random.randint(20, 80)
