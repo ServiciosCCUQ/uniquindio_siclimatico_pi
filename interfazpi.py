@@ -2,7 +2,6 @@
 from __future__ import print_function # In python 2.7
 import sys
 import logging
-import codificacion
 #from flask import Flask, render_template, request, redirect, Response, jsonify
 from flask import Flask, request #import main Flask class and request object
 import random, json
