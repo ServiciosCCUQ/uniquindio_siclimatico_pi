@@ -153,7 +153,7 @@ def clima_offline(data):
 	co2 = json_clima.get('co2') or ''
 	voc = json_clima.get('voc') or ''
 
-	fecha = datetime.strptime(fecha_raw, "%a %b %e %H:%M:%S %Y")
+	fecha = datetime.strptime(fecha_raw, "%a %b %d %H:%M:%S %Y")
 	f = fecha.strftime("%Y-%m-%d %H:%M:%S")
 
 	clima_file = open(_clima,"a")
