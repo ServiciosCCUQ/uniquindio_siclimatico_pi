@@ -37,7 +37,7 @@ def libacion_mqqt(vals):
 	client.publish("libacion", json.dumps(vals) ) #publish
 
 def libacion(flor):
-	# TODO: Revisar si con el utcnow permite el manejo de la utc time.
+	capturar_foto()
 	fecha = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 	vals = { 'flor' :  flor , 'fecha' : fecha }
 	if internet():
@@ -207,6 +207,10 @@ def internet(host="8.8.8.8", port=53, timeout=3):
 		print ex.message
 		return False
 
+def capturar_foto():
+	'Indicarle a Arduno que tome la fotografia'
+	ser.write('F')	 
+
 def clima_mqqt(input):
 	client = mqtt.Client("GreenStation") #create new instance
 	client.connect(host=broker_address ,port=broker_port ) #connect to broker
@@ -220,6 +224,11 @@ def integrador():
 				
 		arduino_input = ser.readline()
 		print(arduino_input)
+
+		if arduino_input == 'F':
+			print('Rebote de Orden: Captura Foto!')
+			continue
+
 		if internet():
 			clima_mqqt(arduino_input)
 		else:
